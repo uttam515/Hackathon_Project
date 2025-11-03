@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from flask_cors import CORS
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='SUPER-SECRET-KEY'
@@ -32,7 +34,8 @@ def signup():
     if existing_user:
         return jsonify({"message": "Username already exists"}), 400
 
-    new_user = User(username=username, password=password)
+    hashed_password = generate_password_hash(password)
+    new_user = User(username=username, password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
 
