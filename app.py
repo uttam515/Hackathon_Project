@@ -4,13 +4,16 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['SECRET_KEY']='SUPER-SECRET-KEY'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
+
 db  = SQLAlchemy(app)
 api = Api(app)
 CORS(app)
 
 
 app.config['SECRET_KEY']='SUPER-SECRET-KEY'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///databse.db'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -35,7 +38,7 @@ class UserRegisteration(Resource):
         db.session.commit()
         return {'message':'User created successfully'}, 200
     
-    
+api.add_resource(UserRegisteration,'/signup.html')   
 
 
 
@@ -44,5 +47,5 @@ class UserRegisteration(Resource):
 
 
 
-if __name__ in  '__main__':
+if __name__ == '__main__':
     app.run(debug=True)
