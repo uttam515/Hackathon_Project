@@ -1,0 +1,74 @@
+/* Use the same background + font style */
+body {
+    background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
+    font-family: "Segoe UI", "Poppins", Arial, sans-serif;
+    margin: 0;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Reuse navbar styling (copy from signup.css) */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 60px;
+    z-index: 10;
+    box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(0, 136, 204, 0.6);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #d9e8ef;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #33ccff;
+}
+
+/* ===== About Container (same glass look as form box) ===== */
+.about-container {
+    max-width: 850px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    padding: 40px;
+    margin-top: 50px;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0, 136, 204, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e0f7ff;
+    line-height: 1.7;
+}
+
+/* Headings */
+.about-container h1,
+.about-container h2 {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(0, 136, 204, 0.6);
+}
+
+.about-container ul {
+    margin-left: 20px;
+}
