@@ -41,9 +41,25 @@ def signup():
 
     return jsonify({"message": "User registered successfully!"}), 200
 
+@app.route('/login', methods = ['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    user = User.query.filter_by(username=username).first()
+    if user and check_password_hash(user.password, password):
+        return jsonify({"message": "Login successful!"}), 200
+    else:
+        return jsonify({"message": "Invalid username or password"}), 401
+
 @app.route('/signup', methods=['GET'])
 def signup_page():
     return render_template('signup.html')
+
+@app.route('/login', methods=['GET'])
+def login_page():
+    return render_template('login.html')
+
 
 
 
