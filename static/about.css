@@ -1,14 +1,16 @@
-/* Use the same background + font style */
+/* ===== Global Background and Font ===== */
 body {
     background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
-    font-family: "Segoe UI", "Poppins", Arial, sans-serif;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
     margin: 0;
     padding-top: 80px;
     display: flex;
     justify-content: center;
+    color: #e6f2ff;
+    line-height: 1.8;
 }
 
-/* Reuse navbar styling (copy from signup.css) */
+/* ===== Navigation Bar ===== */
 .navbar {
     position: fixed;
     top: 0;
@@ -20,55 +22,131 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 60px;
+    padding: 14px 60px;
     z-index: 10;
     box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
 }
 
+/* ===== Logo ===== */
 .navbar .logo {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
     color: #ffffff;
     text-shadow: 0 0 8px rgba(0, 136, 204, 0.6);
+    letter-spacing: 1px;
 }
 
+/* ===== Navigation Links ===== */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 30px;
 }
 
 .nav-links li a {
     text-decoration: none;
     color: #d9e8ef;
-    transition: 0.3s;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-links li a:hover {
     color: #33ccff;
+    text-shadow: 0 0 6px rgba(0, 136, 204, 0.7);
 }
 
-/* ===== About Container (same glass look as form box) ===== */
+/* ===== About Container ===== */
 .about-container {
-    max-width: 850px;
+    max-width: 900px;
     background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(14px);
-    padding: 40px;
-    margin-top: 50px;
-    border-radius: 18px;
-    box-shadow: 0 8px 40px rgba(0, 136, 204, 0.4);
+    backdrop-filter: blur(16px);
+    padding: 50px 60px;
+    margin-top: 80px;
+    border-radius: 22px;
+    box-shadow: 0 10px 50px rgba(0, 136, 204, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #e0f7ff;
-    line-height: 1.7;
+    color: #e6f4ff;
+    text-align: justify;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Headings */
-.about-container h1,
-.about-container h2 {
+.about-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 60px rgba(0, 136, 204, 0.6);
+}
+
+/* ===== Headings ===== */
+.about-container h1 {
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(0, 136, 204, 0.6);
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 12px rgba(0, 136, 204, 0.8);
+    letter-spacing: 0.5px;
 }
 
+.about-container h2 {
+    color: #aee2ff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-left: 4px solid #00aaff;
+    padding-left: 10px;
+}
+
+/* ===== Paragraphs ===== */
+.about-container p {
+    color: #dceeff;
+    font-size: 15.5px;
+    margin-bottom: 18px;
+}
+
+/* ===== Lists ===== */
 .about-container ul {
-    margin-left: 20px;
+    margin-left: 25px;
+    list-style: none;
+}
+
+.about-container ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: #d9f1ff;
+    font-size: 15px;
+}
+
+.about-container ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00b7ff;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 25px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .about-container {
+        padding: 35px 25px;
+        margin-top: 70px;
+    }
+
+    .about-container h1 {
+        font-size: 1.9rem;
+    }
+
+    .about-container h2 {
+        font-size: 1.2rem;
+    }
 }

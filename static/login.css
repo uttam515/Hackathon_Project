@@ -7,14 +7,12 @@
 
 /* ===== Global Background ===== */
 body {
-    /* Elegant gradient with smooth transition and depth */
-    background: radial-gradient(circle at top right, #00aaff 0%, #004e92 40%, #0f2027 90%);
-    /* Optional subtle overlay for depth */
-    background-attachment: fixed; /* gives it a parallax-like feel */
+    background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
+    background-attachment: fixed;
     font-family: "Segoe UI", "Poppins", Arial, sans-serif;
     height: 100vh;
     margin: 0;
-    padding-top: 80px; /* space for navbar */
+    padding-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,6 +104,8 @@ body::before {
 
 /* ===== Logo Image ===== */
 .logo img {
+    display: block; /* centers the image horizontally */
+    margin: 0 auto; /* ensures perfect centering */
     height: 110px;
     margin-bottom: 18px;
     filter: drop-shadow(0 0 6px rgba(0, 136, 204, 0.7));
