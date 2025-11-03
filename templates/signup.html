@@ -15,13 +15,13 @@
     </nav>
     <div class="form-container">
         <h2>Create Your Account</h2>
-    <form onsubmit = "event.preventDefault();signup();">
+    <form  onsubmit = "event.preventDefault();signup();">
             <label for="uname">Username:</label>
             <input type="text" id="username" name="uname" placeholder="Create your username" required>
             <label for="pass">Password:</label>
             <input type="text" id="password" name="pass" placeholder="Create your password" required>
 
-            <input type = "submit" value="Register">
+            <input type = "submit" value="Register" >
     </form>
     <script src="{{ url_for('static', filename='signup.js') }}"></script>
 </body>

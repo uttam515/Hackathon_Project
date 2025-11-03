@@ -67,11 +67,7 @@ def login_page():
 def dashboard():
     return render_template('dashboard.html')
 
-@app.route('/user-info')
-@jwt_required()
-def user_info():
-    current_user = get_jwt_identity()
-    return jsonify({"username": current_user})
+
 
 
 @app.route('/about')

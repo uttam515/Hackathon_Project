@@ -10,7 +10,7 @@ async function login() {
     });
 
     const data = await response.json();
-    alert(data.message);
+    
 
     if (response.status === 200) {
         localStorage.setItem("token",data.token);
