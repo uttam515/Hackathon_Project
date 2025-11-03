@@ -8,12 +8,19 @@
 </head>
 <body>
     <div class = "form-container">
-        <h1>Welcome</h1>
-        <p>You have logged inn!!!!1</p>
+        <h1>Welcome, {{username}}</h1>
+        <p>You are now authenticated</p>
+        <button onclick="logout()"></button>
         <a href = "/login">
             <button>Logout</button>
         </a>
+        <script>
+            function logout(){
+                localStorage.removeItem("token") ; 
+                window.location.href = "/login" ;
+            }
 
+        </script>
     </div>
 </body>
 </html>

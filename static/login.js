@@ -13,7 +13,8 @@ async function login() {
     alert(data.message);
 
     if (response.status === 200) {
-      window.location.href = "/dashboard"; 
+        localStorage.setItem("token",data.token);
+        window.location.href = "/dashboard"; 
     }
 
   } catch (error) {
