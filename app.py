@@ -38,7 +38,7 @@ class UserRegisteration(Resource):
         db.session.commit()
         return {'message':'User created successfully'}, 200
     
-api.add_resource(UserRegisteration,'/signup.html')   
+api.add_resource(UserRegisteration,'/signup')   
 
 
 
