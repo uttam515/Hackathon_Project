@@ -3,7 +3,8 @@ async function signup() {
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:5000/signup", {
+    // CHANGED: Using relative URL is better practice
+    const response = await fetch("/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -11,7 +12,8 @@ async function signup() {
 
     const data = await response.json();
     if (response.ok) {
-      window.location.href = "/";
+      // CHANGED: Redirect to login page after successful signup
+      window.location.href = "/login";
     } else {
       alert(data.message || "Signup failed.");
     }

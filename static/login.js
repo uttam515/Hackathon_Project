@@ -3,7 +3,8 @@ async function login() {
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:5000/", {
+    // CHANGED: The URL is now "/login" to match your app.py
+    const response = await fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -11,10 +12,14 @@ async function login() {
 
     const data = await response.json();
     
-
-    if (response.status === 200) {
-        localStorage.setItem("token",data.token);
+    if (response.ok) { // 'response.ok' is safer than 'response.status === 200'
+        // CHANGED: The token key is "access_token" in your app.py
+        localStorage.setItem("token", data.access_token);
+        
+        // CHANGED: Your dashboard is at "/", not "/dashboard"
         window.location.href = "/dashboard"; 
+    } else {
+        alert(data.message || "Login failed.");
     }
 
   } catch (error) {

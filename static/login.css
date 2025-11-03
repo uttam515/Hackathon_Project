@@ -7,8 +7,10 @@
 
 /* ===== Global Background ===== */
 body {
-    background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
-    background-attachment: fixed;
+    /* Elegant gradient with smooth transition and depth */
+    background: radial-gradient(circle at top right, #00aaff 0%, #004e92 40%, #0f2027 90%);
+    /* Optional subtle overlay for depth */
+    background-attachment: fixed; /* gives it a parallax-like feel */
     font-family: "Segoe UI", "Poppins", Arial, sans-serif;
     height: 100vh;
     margin: 0;
@@ -27,8 +29,7 @@ body::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.08), transparent 70%),
-                radial-gradient(circle at 70% 70%, rgba(0, 136, 255, 0.08), transparent 70%);
+    background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
     z-index: -1;
     animation: floatGlow 10s ease-in-out infinite alternate;
     pointer-events: none;

@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Right2Know Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css')}}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Right2Know</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dashboard.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo">RIGHT2KNOW</div>
-    <button class="logout-icon" onclick="logout()" title="Logout">
-      <i class="fa-solid fa-right-from-bracket"></i>
-    </button>
-  </div>
+    <nav class="navbar">
+        <div class="logo">RIGHT2KNOW</div>
+        <button id="logoutButton" class="logout-icon" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </nav>
 
-  <!-- Dashboard Content -->
-  <div class="dashboard">
-    <!-- Left Panel -->
-    <div class="main-section">
-      <h2>Know Your Rights</h2>
-      <p>Simplified Legal Explanations for Every Citizen</p>
+    <div class="dashboard">
 
-      <div class="buttons">
-        <button>Stopped by Police</button>
-        <button>Tenant Rights</button>
-        <button>Employment Law</button>
-        <button>Consumer Rights</button>
-        <button>Family Law</button>
-        <button>Digital Privacy</button>
-      </div>
+        <section class="info-section glass-card" id="search-panel">
+            <h1 id="welcome-heading">Welcome!</h1>
+            
+            <h3>Legal Rights Search</h3>
+            <p>Describe your situation (e.g., "arrest", "cops", "landlord") to see your rights.</p>
+            
+            <label for="mainSearchInput">Enter situation:</label>
+            <input type="text" id="mainSearchInput" placeholder="e.g., 'traffic stop'">
+            <button id="mainSearchButton">Get Info</button>
 
-      <div class="search-bar">
-        <input type="text" placeholder="Don't see your situation? Search here">
-      </div>
+            <div id="resultsContainer">
+                <p>Search for a situation to see results.</p>
+            </div>
+        </section>
+
+        <section class="main-section glass-card" id="center-panel">
+            <h2>Know Your Rights</h2>
+            <p>Simplified Legal Explanations for Every Citizen</p>
+            <div class="buttons">
+                <button data-search="Police Stop">Stopped by Police</button>
+                <button data-search="Tenant Rights">Tenant Rights</button>
+                <button data-search="Employment">Employment Law</button>
+                <button data-search="Consumer Rights">Consumer Rights</button>
+                <button data-search="Family Law">Family Law</button>
+                <button data-search="Data Privacy">Digital Privacy</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="centerSearchInput" placeholder="Don't see your situation? Search here">
+            </div>
+        </section>
+
+        <section class="info-section right-panel">
+            <div class="info-card glass-card">
+                <h3>Indian Penal Code (IPC)</h3>
+                <p>Section 323: Punishment for voluntarily causing hurt.</p>
+                <a href="https://www.indiacode.nic.in/handle/123456789/2232" target="_blank">View Source</a>
+            </div>
+            <div class="info-card glass-card">
+                <h3>Right to Information Act</h3>
+                <p>Empowers citizens to request public information.</p>
+                <a href="https://rti.gov.in/" target="_blank">View Source</a>
+            </div>
+        </section>
+
     </div>
+    
+    <footer>
+        <p>&copy; 2025 Right2Know - Hack the System</p>
+    </footer>
 
-    <!-- Right Panel -->
-    <div class="info-section">
-      <div class="info-card">
-        <h3>Indian Penal Code (IPC)</h3>
-        <p>Section 223: Punishment for voluntarily causing hurt</p>
-        <a href="https://share.google/0zwekTk19jctnGanR">View Source</a>
-      </div>
-      <div class="info-card">
-        <h3>Right to Information Act</h3>
-        <p>Empowers citizens to request public information.</p>
-        <a href="https://rti.dopt.gov.in/">View Source</a>
-      </div>
-    </div>
-  </div>
-
-  <footer>>© 2025 Right2Know | Hack the System</footer>
-
-  <script>
-    function logout() {
-      localStorage.removeItem("token");
-      window.location.href = "/";
-    }
-  </script>
+    <script src="{{url_for('static', filename='dashboard.js')}}"></script>
 </body>
 </html>
