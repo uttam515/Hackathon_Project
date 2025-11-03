@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">
 </head>
 <body>
-    <!-- ===== Navigation Bar ===== -->
     <nav class="navbar">
         <div class="logo">Hackathon Portal</div>
         <ul class="nav-links">
@@ -18,24 +17,23 @@
         </ul>
     </nav>
 
-    <!-- ===== Login Form ===== -->
-    <div class="container">
+    <div class="form-container"> 
         <div class="logo">
             <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="Logo">
         </div>
         <h2>Login</h2>
-        <form>
+        <form onsubmit="event.preventDefault() ; login();">
             <label for="uname">Username:</label>
-            <input type="text" id="uname" name="uname" placeholder="Enter your username" required>
+            <input type="text" id="username" name="uname" placeholder="Enter your username" required>
 
             <label for="pass">Password:</label>
-            <input type="password" id="pass" name="pass" maxlength="12" placeholder="Enter password" required>
+            <input type="password" id="password" name="pass" maxlength="12" placeholder="Enter password" required>
 
-            <input type="reset" value="Reset">
             <input type="submit" value="Login">
 
-            <a href="signup.html" class="signup-btn-below">Don’t have an account? Sign Up</a>
+            <a href="/signup" class="signup-btn-below">Don’t have an account? Sign Up</a>
         </form>
     </div>
+    <script src = "{{url_for('static',filename = 'login.js')}}"></script>
 </body>
 </html>
