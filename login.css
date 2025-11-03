@@ -159,7 +159,6 @@ form input[type="reset"]:hover {
 .link-btn:hover {
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 0 18px rgba(51, 204, 255, 0.6);
 }
 
 
