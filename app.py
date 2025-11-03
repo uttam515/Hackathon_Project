@@ -38,7 +38,9 @@ def signup():
 
     return jsonify({"message": "User registered successfully!"}), 200
 
-
+@app.route('/signup', methods=['GET'])
+def signup_page():
+    return render_template('signup.html')
 
 
 
