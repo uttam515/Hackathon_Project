@@ -3,19 +3,21 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='SUPER-SECRET-KEY'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 
+
 db  = SQLAlchemy(app)
 api = Api(app)
 CORS(app)
+jwt = JWTManager(app)
 
 
-app.config['SECRET_KEY']='SUPER-SECRET-KEY'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -48,6 +50,7 @@ def login():
     password = data.get('password')
     user = User.query.filter_by(username=username).first()
     if user and check_password_hash(user.password, password):
+        access_token = create_access_token(identity=username)
         return jsonify({"message": "Login successful!"}), 200
     else:
         return jsonify({"message": "Invalid username or password"}), 401
@@ -59,6 +62,14 @@ def signup_page():
 @app.route('/login', methods=['GET'])
 def login_page():
     return render_template('login.html')
+
+@app.route('/dashboard')
+@jwt_required()
+def dashboard():
+    current_user = get_jwt_identity()
+    return render_template('dashboard.html', username = current_user)
+
+
 
 
 
