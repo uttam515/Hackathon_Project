@@ -43,7 +43,7 @@ def signup():
 
     return jsonify({"message": "User registered successfully!"}), 200
 
-@app.route('/login', methods = ['POST'])
+@app.route('/', methods = ['POST'])
 def login():
     data = request.get_json()
     username = data.get('username')
@@ -59,7 +59,7 @@ def login():
 def signup_page():
     return render_template('signup.html')
 
-@app.route('/login', methods=['GET'])
+@app.route('/', methods=['GET'])
 def login_page():
     return render_template('login.html')
 

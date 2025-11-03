@@ -10,7 +10,7 @@ async function signup() {
     });
 
     const data = await response.json();
-    alert(data.message);
+    
   } catch (error) {
     console.error("Error:", error);
     alert("Signup failed.");
