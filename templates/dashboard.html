@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel = "stylesheet" href="{{url_for('static',filename='signup.css')}}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <title>Right2Know Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class = "form-container">
-        <h1>Welcome, {{username}}</h1>
-        <p>You are now authenticated</p>
-        <button onclick="logout()"></button>
-        <a href = "/login">
-            <button>Logout</button>
-        </a>
-        <script>
-            function logout(){
-                localStorage.removeItem("token") ; 
-                window.location.href = "/login" ;
-            }
 
-        </script>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">RIGHT2KNOW</div>
+    <button class="logout-icon" onclick="logout()" title="Logout">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard">
+    <!-- Left Panel -->
+    <div class="main-section">
+      <h2>Know Your Rights</h2>
+      <p>Simplified Legal Explanations for Every Citizen</p>
+
+      <div class="buttons">
+        <button>Stopped by Police</button>
+        <button>Tenant Rights</button>
+        <button>Employment Law</button>
+        <button>Consumer Rights</button>
+        <button>Family Law</button>
+        <button>Digital Privacy</button>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Don't see your situation? Search here">
+      </div>
     </div>
+
+    <!-- Right Panel -->
+    <div class="info-section">
+      <div class="info-card">
+        <h3>Indian Penal Code (IPC)</h3>
+        <p>Section 223: Punishment for voluntarily causing hurt</p>
+        <a href="https://share.google/0zwekTk19jctnGanR">View Source</a>
+      </div>
+      <div class="info-card">
+        <h3>Right to Information Act</h3>
+        <p>Empowers citizens to request public information.</p>
+        <a href="https://rti.dopt.gov.in/">View Source</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 Right2Know | Hack the System</footer>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+  </script>
 </body>
 </html>

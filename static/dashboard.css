@@ -1,0 +1,215 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Global Background ===== */
+body {
+  background: radial-gradient(circle at top right, #0088cc, #0f2027 60%);
+  font-family: "Segoe UI", "Poppins", Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  color: #e8f1f5;
+  overflow-x: hidden;
+}
+
+/* ===== Navigation Bar ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 60px;
+  z-index: 100;
+  box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
+}
+
+/* ===== Logo ===== */
+.navbar .logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 136, 204, 0.6);
+}
+
+/* ===== Logout Icon ===== */
+.logout-icon {
+  background: none;
+  border: none;
+  color: #d9e8ef;
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-icon:hover {
+  color: #33ccff;
+  transform: scale(1.1);
+}
+
+/* ===== Dashboard Layout ===== */
+.dashboard {
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 20px 60px;
+}
+
+/* ===== Left Panel: Main Actions ===== */
+.main-section {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 136, 204, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 50px rgba(0, 136, 204, 0.6);
+}
+
+.main-section h2 {
+  color: #ffffff;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
+
+.main-section p {
+  color: #cde8f0;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+}
+
+/* ===== Buttons Grid ===== */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.buttons button {
+  padding: 14px 0;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #0088cc, #00aaff);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.buttons button:hover {
+  background: linear-gradient(135deg, #0099dd, #33ccff);
+  transform: translateY(-3px);
+}
+
+/* ===== Search Input ===== */
+.search-bar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar input {
+  width: 85%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #00aaff;
+}
+
+/* ===== Right Panel: Info Boxes ===== */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 350px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 136, 204, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 35px rgba(0, 136, 204, 0.4);
+}
+
+.info-card h3 {
+  color: #33ccff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  color: #bcd4e0;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.info-card a {
+  color: #00aaff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-card a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  font-size: 0.85em;
+  color: #b0c4de;
+  margin: 30px 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-section, .info-section {
+    width: 90%;
+  }
+
+  .navbar {
+    padding: 10px 25px;
+  }
+}
+
