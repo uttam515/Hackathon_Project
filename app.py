@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from flask_cors import CORS
@@ -23,22 +23,20 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-class UserRegisteration(Resource):
-    def post(self):
-        data = request.get_json()
-        username = data['username']
-        password = data['password']
-        if not username or not password:
-            return {'message':'Missing username or password'}, 400
-        if User.query.filter_by(username = username).first():
-            return {'message':'Username already taken'}, 400
-        
-        new_user = User(username=username,password=password)
-        db.session.add(new_user)
-        db.session.commit()
-        return {'message':'User created successfully'}, 200
-    
-api.add_resource(UserRegisteration,'/signup')   
+@app.route('/signup', method = ['POST'])
+def signup():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    existing_user = User.query.filter_by(username=username).first()
+    if existing_user:
+        return jsonify({"message": "Username already exists"}), 400
+
+    new_user = User(username=username, password=password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User registered successfully!"}), 200
 
 
 
