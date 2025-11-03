@@ -16,7 +16,7 @@
     </nav>
     <div class="form-container">
         <h2>Create Your Account</h2>
-    <form>
+    <form onsubmit = "event.preventDefault() ; signup() ;">
             <label for="uname">Username:</label>
             <input type="text" id="uname" name="uname" placeholder="Create your username" required>
             <label for="pass">Password:</label>
@@ -24,5 +24,6 @@
 
             <input type = "submit" value="Register">
     </form>
+    <script src = "signup.js"></script>
 </body>
 </html>
