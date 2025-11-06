@@ -16,58 +16,23 @@
         </button>
     </nav>
 
-    <div class="dashboard">
-
-        <section class="info-section glass-card" id="search-panel">
+    <div class="chat-container">
+        
+        <div class="chat-history" id="resultsContainer">
             <h1 id="welcome-heading">Welcome!</h1>
-            
-            <h3>Legal Rights Search</h3>
-            <p>Describe your situation (e.g., "arrest", "cops", "landlord") to see your rights.</p>
-            
-            <label for="mainSearchInput">Enter situation:</label>
-            <input type="text" id="mainSearchInput" placeholder="e.g., 'traffic stop'">
-            <button id="mainSearchButton">Get Info</button>
+            <p class="system-message">
+                Ask me about a legal situation (e.g., "arrest", "landlord", "traffic stop") and I'll find your rights.
+            </p>
+        </div>
 
-            <div id="resultsContainer">
-                <p>Search for a situation to see results.</p>
-            </div>
-        </section>
-
-        <section class="main-section glass-card" id="center-panel">
-            <h2>Know Your Rights</h2>
-            <p>Simplified Legal Explanations for Every Citizen</p>
-            <div class="buttons">
-                <button data-search="Police Stop">Stopped by Police</button>
-                <button data-search="Tenant Rights">Tenant Rights</button>
-                <button data-search="Employment">Employment Law</button>
-                <button data-search="Consumer Rights">Consumer Rights</button>
-                <button data-search="Family Law">Family Law</button>
-                <button data-search="Data Privacy">Digital Privacy</button>
-            </div>
-            <div class="search-bar">
-                <input type="text" id="centerSearchInput" placeholder="Don't see your situation? Search here">
-            </div>
-        </section>
-
-        <section class="info-section right-panel">
-            <div class="info-card glass-card">
-                <h3>Indian Penal Code (IPC)</h3>
-                <p>Section 323: Punishment for voluntarily causing hurt.</p>
-                <a href="https://www.indiacode.nic.in/handle/123456789/2232" target="_blank">View Source</a>
-            </div>
-            <div class="info-card glass-card">
-                <h3>Right to Information Act</h3>
-                <p>Empowers citizens to request public information.</p>
-                <a href="https://rti.gov.in/" target="_blank">View Source</a>
-            </div>
-        </section>
-
+        <div class="input-bar">
+            <input type="text" id="mainSearchInput" placeholder="Describe your situation...">
+            <button id="mainSearchButton" title="Get Info">
+                <i class="fas fa-paper-plane"></i> 
+            </button>
+        </div>
     </div>
     
-    <footer>
-        <p>&copy; 2025 Right2Know - Hack the System</p>
-    </footer>
-
     <script src="{{url_for('static', filename='dashboard.js')}}"></script>
 </body>
 </html>

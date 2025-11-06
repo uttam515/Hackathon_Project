@@ -1,45 +1,63 @@
 // === LOGOUT FUNCTION ===
 function logout() {
     localStorage.removeItem("token"); 
-    window.location.href = "/login";
+    window.location.href = "/login"; // Redirects to login page
 }
 
 // === SEARCH FUNCTION ===
-// This function will be called by all search buttons
 const performSearch = async (searchTerm) => {
     const resultsContainer = document.getElementById('resultsContainer');
     if (!searchTerm) return; // Don't search if the box is empty
 
-    resultsContainer.innerHTML = '<p>Searching...</p>';
+    // === NEW CODE START ===
+    // 1. Create a card for the user's query
+    const queryCard = document.createElement('div');
+    queryCard.className = 'user-query-card'; // New CSS class for user's chat bubble
+    queryCard.textContent = searchTerm;
+    resultsContainer.appendChild(queryCard);
+    // === NEW CODE END ===
+
+    resultsContainer.innerHTML += '<p class="system-message">Searching...</p>';
     
-    // Call the /api/search endpoint
-    const response = await fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`);
-    const results = await response.json();
+    try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`);
+        
+        const searchingMessage = resultsContainer.querySelector('.system-message:last-child');
+        if (searchingMessage) searchingMessage.remove();
 
-    resultsContainer.innerHTML = ''; // Clear "Searching..."
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+        }
+        
+        const results = await response.json();
 
-    if (results.length === 0) {
-        resultsContainer.innerHTML = '<p>No matching situations found.</p>';
-    } else {
-        results.forEach(item => {
-            // Create result card elements dynamically
-            const card = document.createElement('div');
-            card.className = 'result-card'; // You can style '.result-card' in your CSS
-            
-            let cardHtml = `<h3>${item.situation}</h3>`;
-            
-            if (item.legal_section) {
-                // Use the 'legal-section' class from your CSS
-                cardHtml += `<p class="legal-section"><strong>Relevant Section:</strong> ${item.legal_section}</p>`;
-            }
-            
-            cardHtml += `<p><strong>Your Rights:</strong> ${item.rights}</p>`;
-            cardHtml += `<p><strong>Best Action:</strong> ${item.best_action}</p>`;
-            
-            card.innerHTML = cardHtml;
-            resultsContainer.appendChild(card);
-        });
+        if (results.length === 0) {
+            resultsContainer.innerHTML += '<p class="system-message">No matching situations found.</p>';
+        } else {
+            results.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'result-card'; // This is the bot's answer bubble
+                
+                let cardHtml = `<h3>${item.situation}</h3>`;
+                
+                if (item.legal_section) {
+                    cardHtml += `<p class="legal-section"><strong>Relevant Section:</strong> ${item.legal_section}</p>`;
+                }
+                
+                cardHtml += `<p><strong>Your Rights:</strong> ${item.rights}</p>`;
+                cardHtml += `<p><strong>Best Action:</strong> ${item.best_action}</p>`;
+                
+                card.innerHTML = cardHtml;
+                resultsContainer.appendChild(card);
+            });
+        }
+    } catch (error) {
+        console.error("Search failed:", error);
+        resultsContainer.innerHTML += '<p class="system-message">An error occurred. Please try again.</p>';
     }
+    
+    // Scroll to the bottom to show new results
+    resultsContainer.scrollTop = resultsContainer.scrollHeight;
 };
 
 // === RUNS WHEN THE PAGE IS LOADED ===
@@ -77,35 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. WIRE UP LOGOUT BUTTON
     document.getElementById('logoutButton').addEventListener('click', logout);
 
-    // 3. WIRE UP ALL SEARCH BUTTONS
-    
-    // Left panel search
+    // 3. WIRE UP THE ONE AND ONLY SEARCH BAR
     const mainSearchInput = document.getElementById('mainSearchInput');
     const mainSearchButton = document.getElementById('mainSearchButton');
-    mainSearchButton.addEventListener('click', () => {
-        performSearch(mainSearchInput.value);
-    });
+    
+    const runSearch = () => {
+        const searchTerm = mainSearchInput.value;
+        performSearch(searchTerm);
+        mainSearchInput.value = ""; // Clear input after search
+    };
+
+    mainSearchButton.addEventListener('click', runSearch);
+    
     mainSearchInput.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') performSearch(mainSearchInput.value);
-    });
-
-    // Center panel (preset buttons)
-    document.querySelectorAll('.buttons button').forEach(button => {
-        button.addEventListener('click', () => {
-            const searchTerm = button.getAttribute('data-search');
-            performSearch(searchTerm);
-            // Optional: scroll to results
-            document.getElementById('search-panel').scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // Center panel (search bar)
-    const centerSearchInput = document.getElementById('centerSearchInput');
-    centerSearchInput.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
-            performSearch(centerSearchInput.value);
-            // Optional: scroll to results
-            document.getElementById('search-panel').scrollIntoView({ behavior: 'smooth' });
+            runSearch();
         }
     });
 });
